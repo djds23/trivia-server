@@ -5,9 +5,9 @@ end
 
 task import_irc: :environment do
   data.each do |category, questions|
-    category = Category.where(name: category).first_or_create!
+    category = Category.where(title: category).first_or_create!
     questions.each do |question|
-      Clue.create! do |c|
+      Card.create! do |c|
         c.question = question['question']
         c.answer = question['answer']
         c.category = category
