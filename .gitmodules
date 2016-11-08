@@ -1,0 +1,3 @@
+[submodule "irc_trivia_dataset"]
+	path = irc_trivia_dataset
+	url = git@github.com:djds23/irc_trivia_dataset.git
