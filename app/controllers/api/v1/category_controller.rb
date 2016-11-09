@@ -18,7 +18,8 @@ class Api::V1::CategoryController < ApplicationController
   end
 
   def count
-    params[:count] || 100
+   value = params[:count] || 100
+   value.to_i
   end
 
   def category_params
