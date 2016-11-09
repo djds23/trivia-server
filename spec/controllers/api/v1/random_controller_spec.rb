@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::V1::RandomController, type: :controller do
-  let (:category) { Category.create!(title: 'testables') }
+  let! (:category) { Category.create!(title: 'testables') }
 
   describe '#index' do
     let!(:answer_text) { 'the answer' }
