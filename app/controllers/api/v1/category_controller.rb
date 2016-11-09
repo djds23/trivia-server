@@ -5,7 +5,10 @@ class Api::V1::CategoryController < ApplicationController
   end
 
   def show
-    render json: Card.where(category_id: category_id)
+    render json: CategoryPresenter.new(
+      category_id: category_id,
+      count: count
+    ).as_json
   end
 
   private
@@ -14,7 +17,11 @@ class Api::V1::CategoryController < ApplicationController
     params[:id].to_i
   end
 
+  def count
+    params[:count] || 100
+  end
+
   def category_params
-    params.permit(:id)
+    params.permit(:id, :count)
   end
 end
