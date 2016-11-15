@@ -29,6 +29,6 @@ class Api::V1::CategoryController < ApplicationController
   end
 
   def set_cache_headers
-    expires_in(24.hours, public: true, must_revalidate: true)
+    expires_in(1.hour, public: true, must_revalidate: true)
   end
 end
