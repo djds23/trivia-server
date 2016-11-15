@@ -1,5 +1,7 @@
 class Api::V1::CategoryController < ApplicationController
 
+  before_action :set_cache_headers
+
   def index
     render json: Category.valid
   end
@@ -24,5 +26,9 @@ class Api::V1::CategoryController < ApplicationController
 
   def category_params
     params.permit(:id, :count)
+  end
+
+  def set_cache_headers
+    expires_in(24.hours, public: true, must_revalidate: true)
   end
 end
