@@ -1,9 +1,8 @@
 class Api::V1::ReasonsController < ApplicationController
-  before_action :set_reason, only: [:show, :update, :destroy]
 
   # GET /reasons
   def index
-    @reasons = Reason.all
+    @reasons = Reason.where(deactivated_at: nil)
 
     render json: @reasons
   end
