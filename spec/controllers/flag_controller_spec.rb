@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::V1::DisableController, type: :controller do
+describe Api::V1::FlagController, type: :controller do
 
   let!(:reason) {
     Reason.where(

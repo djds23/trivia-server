@@ -1,4 +1,4 @@
-class Api::V1::DisableController < ApplicationController
+class Api::V1::FlagController < ApplicationController
   before_action :set_reason_and_card
 
   def create
