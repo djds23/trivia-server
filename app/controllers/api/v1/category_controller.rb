@@ -3,7 +3,8 @@ class Api::V1::CategoryController < ApplicationController
   before_action :set_cache_headers
 
   def index
-    render json: Category.valid
+    render json: Category.valid.with_count
+
   end
 
   def show
