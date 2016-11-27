@@ -4,7 +4,6 @@ class Api::V1::CategoryController < ApplicationController
 
   def index
     render json: Category.valid.with_count
-
   end
 
   def show

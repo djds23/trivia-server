@@ -3,6 +3,11 @@ require 'rails_helper'
 describe Api::V1::CategoryController, type: :controller do
   let! (:category) { Category.create!(title: 'testables') }
   let! (:answer_text) { 'this is the answer' }
+  before(:each) do
+    101.times do |_|
+      Card.create!(category: category, question: 'what is?', answer: answer_text)
+    end
+  end
 
   describe '#index' do
     it 'returns an array of categories' do
@@ -12,16 +17,11 @@ describe Api::V1::CategoryController, type: :controller do
         obj['id'] == category.id && obj['title'] == category.title
       }
       expect(category_hash).to be
+      expect(category_hash['card_count']).to eq 101
     end
   end
 
   describe '#show' do
-    before(:each) do
-      101.times do |_|
-        Card.create!(category: category, question: 'what is?', answer: answer_text)
-      end
-    end
-
     it 'returns an array of categories' do
       get :show, id: category.id
       json_body = JSON.parse(response.body)
