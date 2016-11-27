@@ -1,4 +1,5 @@
 class Api::V1::ReasonsController < ApplicationController
+  before_action :set_cache_headers
 
   # GET /reasons
   def index
@@ -8,9 +9,9 @@ class Api::V1::ReasonsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_reason
-    @reason = Reason.find(params[:id])
+
+  def set_cache_headers
+    expires_in(1.hour, public: true, must_revalidate: true)
   end
 
   # Only allow a trusted parameter "white list" through.

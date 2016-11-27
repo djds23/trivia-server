@@ -3,7 +3,7 @@ class Api::V1::CategoryController < ApplicationController
   before_action :set_cache_headers
 
   def index
-    render json: Category.valid.with_count
+    render json: Category.valid_with_count(after_id: params[:last_category_id])
   end
 
   def show
@@ -25,7 +25,7 @@ class Api::V1::CategoryController < ApplicationController
   end
 
   def category_params
-    params.permit(:id, :count)
+    params.permit(:id, :count, :last_category_id)
   end
 
   def set_cache_headers

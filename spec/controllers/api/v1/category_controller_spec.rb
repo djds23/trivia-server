@@ -19,6 +19,14 @@ describe Api::V1::CategoryController, type: :controller do
       expect(category_hash).to be
       expect(category_hash['card_count']).to eq 101
     end
+
+    context 'with :last_category_id' do
+      it 'only returns categories with an id greater than the last one seen' do
+        get :index, last_category_id: category.id
+        json_body = JSON.parse(response.body)
+        expect(json_body).to be_empty
+      end
+    end
   end
 
   describe '#show' do
