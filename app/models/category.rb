@@ -15,6 +15,7 @@ class Category < ApplicationRecord
       WHERE
         categories.deactivated_at IS NULL
         AND categories.id > #{after_id.to_i}
+        AND card_count > 1
     SQL
 
     find_by_sql(sql)
