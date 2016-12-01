@@ -5,7 +5,7 @@ end
 
 task import_irc: :environment do
   data.each do |category, questions|
-    category = Category.where(title: category.downcase).first_or_create!
+    category = Category.where(title: category.strip.downcase).first_or_create!
     questions.each do |question|
       Card.create! do |c|
         c.question = question['question']
