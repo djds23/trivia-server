@@ -16,6 +16,6 @@ class CategoryPresenter
   private
 
   def cards
-    Card.where(category_id: category.id).random(count)
+    Card.where(category_id: category.id).limit(count)
   end
 end
