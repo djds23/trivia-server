@@ -13,7 +13,7 @@ task audit_flags: :environment do
         flag.activated_at = Time.now
         flag.card.deactivated_at = Time.now
         flag.save!
-        card.save!
+        flag.card.save!
         puts 'flagged'
       end
     end
