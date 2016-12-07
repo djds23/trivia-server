@@ -1,5 +1,5 @@
 task audit_flags: :environment do
-  flags = [CardFlag.new(card: Card.last, reason: Reason.first)]# CardFlag.where(activated_at: nil)
+  flags = CardFlag.where(activated_at: nil)
   flags.each do |flag|
     puts "#{flag.card_id} has been flagged for #{flag.reason.display_name}!"
     puts "Question: #{flag.card.question}"
