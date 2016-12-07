@@ -1,9 +1,11 @@
 class CategoryPresenter
   attr_reader :category,
+              :shuffle,
               :count
 
-  def initialize(category_id:, count:)
+  def initialize(category_id:, count:, shuffle:)
     @category = Category.find(category_id)
+    @shuffle = shuffle
     @count = count
   end
 
@@ -16,6 +18,11 @@ class CategoryPresenter
   private
 
   def cards
-    Card.where(category_id: category.id).limit(count)
+    card_relation = Card.where(category_id: category.id).order(:id).limit(count)
+    puts shuffle
+    if shuffle
+      card_relation = card_relation.shuffle
+    end
+    card_relation
   end
 end

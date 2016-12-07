@@ -9,11 +9,20 @@ class Api::V1::CategoryController < ApplicationController
   def show
     render json: CategoryPresenter.new(
       category_id: category_id,
-      count: count
+      count: count,
+      shuffle: shuffle
     ).as_json
   end
 
   private
+
+  def shuffle
+    if params.has_key?(:shuffle)
+      params[:shuffle] == "true"
+    else
+      true
+    end
+  end
 
   def category_id
     params[:id].to_i
